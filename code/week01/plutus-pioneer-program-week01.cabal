@@ -41,6 +41,7 @@ executable auction-pab
                   , base ^>= 4.14.1.0
                   , freer-extras
                   , freer-simple
+                  , directory
                   , plutus-contract
                   , plutus-ledger
                   , plutus-ledger-api

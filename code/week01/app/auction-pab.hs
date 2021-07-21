@@ -30,6 +30,7 @@ import Plutus.PAB.Simulator (SimulatorEffectHandlers)
 import qualified Plutus.PAB.Simulator as Simulator
 import Plutus.PAB.Types (PABError (..))
 import qualified Plutus.PAB.Webserver.Server as PAB.Server
+import System.Directory (createDirectoryIfMissing)
 import Wallet.Emulator.Types (Wallet (..), walletPubKey)
 import Week01.EnglishAuction (AuctionSchema, endpoints)
 import Week01.PAB
@@ -44,7 +45,8 @@ waitForLastState cid =
     _ -> Nothing
 
 main :: IO ()
-main = void $
+main = void $ do
+  createDirectoryIfMissing False "artifacts"
   Simulator.runSimulationWith handlers $ do
     Simulator.logString @(Builtin AuctionContracts) "Starting Auction PAB webserver"
     shutdown <- PAB.Server.startServerDebug

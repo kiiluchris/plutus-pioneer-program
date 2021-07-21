@@ -14,10 +14,12 @@ library
                      , Week03.Homework2
                      , Week03.Parameterized
                      , Week03.Vesting
+                     , Week03.PAB
   build-depends:       aeson
                      , base ^>=4.14.1.0
                      , containers
                      , data-default
+                     , prettyprinter
                      , playground-common
                      , plutus-contract
                      , plutus-ledger
@@ -25,5 +27,49 @@ library
                      , plutus-tx-plugin
                      , plutus-tx
                      , text
+                     , uuid
   default-language:    Haskell2010
   ghc-options:         -Wall -fobject-code -fno-ignore-interface-pragmas -fno-omit-interface-pragmas -fno-strictness -fno-spec-constr -fno-specialise
+
+executable vesting-pab
+  main-is: vesting-pab.hs
+  hs-source-dirs: app
+  build-depends:       base ^>= 4.14.1.0
+                     , plutus-pioneer-program-week03
+                     , plutus-contract
+                     , plutus-pab
+                     , plutus-ledger
+                     , aeson
+                     , bytestring
+                     , data-default
+                     , freer-simple
+                     , freer-extras
+                     , text
+
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings
+                     , NumericUnderscores
+  ghc-options: -Wall -fobject-code -fno-ignore-interface-pragmas -fno-omit-interface-pragmas -fno-strictness -fno-spec-constr -fno-specialise
+
+test-suite plutus-pioneer-program-week03-tests
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs: tests
+  build-depends:       base ^>= 4.14.1.0
+                     , data-default
+                     , containers
+                     , lens
+                     , text
+                     , plutus-contract
+                     , plutus-ledger
+                     , tasty
+                     , tasty-quickcheck
+                     , plutus-pioneer-program-week03
+  other-modules:   Spec.Homework1.Trace
+                 , Spec.Homework2.Trace
+                 , Spec.Parameterized.Trace
+                 , Spec.Vesting.Trace
+  default-language: Haskell2010
+  ghc-options: -Wall -fobject-code -fno-ignore-interface-pragmas -fno-omit-interface-pragmas
+
+

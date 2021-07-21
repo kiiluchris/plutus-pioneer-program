@@ -195,12 +195,14 @@ mkAuctionValidator ad redeemer ctx =
     getsValue :: PubKeyHash -> Value -> Bool
     getsValue h v =
       let
-        [o] = [ o'
+        os = [ o'
               | o' <- txInfoOutputs info
               , txOutValue o' == v
               ]
       in
-        txOutAddress o == pubKeyHashAddress h
+        case os of
+          [o] -> txOutAddress o == pubKeyHashAddress h
+          _ -> False
 
 auctionTypedValidator :: Scripts.TypedValidator Auctioning
 auctionTypedValidator = Scripts.mkTypedValidator @Auctioning

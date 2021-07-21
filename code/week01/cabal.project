@@ -22,6 +22,8 @@ source-repository-package
     plutus-ledger-api
     plutus-tx
     plutus-tx-plugin
+    plutus-pab
+    plutus-use-cases
     prettyprinter-configurable
     quickcheck-dynamic
     word-array

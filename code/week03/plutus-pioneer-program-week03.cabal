@@ -42,6 +42,7 @@ executable vesting-pab
                      , aeson
                      , bytestring
                      , data-default
+                     , directory
                      , freer-simple
                      , freer-extras
                      , text
